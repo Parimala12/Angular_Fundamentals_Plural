@@ -1,0 +1,29 @@
+<h1>Login</h1>
+<hr>
+<div class="col-md-3">
+  <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)" autocomplete="off">
+    <div class="form-group" >
+      <label for="userName">User Name:</label>
+      <em *ngIf="(uname.invalid)&&(uname.touched || mouseoverLogin)">Required</em>
+      <input (ngModel)="userName" #uname="ngModel" name="userName" id="userName" type="text" class="form-control" placeholder="User Name..." required="true">
+    </div><br>
+    <div class="form-group" >
+      <label for="password">Password:</label>
+      <em *ngIf="(pwd.invalid)&&(pwd.touched || mouseoverLogin)">Required</em>
+      <input (ngModel)="password" #pwd="ngModel" name="password" id="password" type="password" class="form-control" placeholder="Password..." required>
+    </div><br>
+    <span (mouseenter) ="mouseoverLogin=true" (mouseleave) ="mouseoverLogin=false">
+    <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary">Login</button>&nbsp;
+    </span>
+    <button [routerLink]="['/events']" type="button" class="btn btn-warning">Cancel</button>
+  </form>
+</div>
+<br>
+<br>
+
+<p>loginForm Valid:{{loginForm.valid}}</p>
+<p>UserName touched:{{uname.touched}}</p>
+<!--<input type="text" (input)="tit=$any($event.target).value">{{tit}}
+{{loginForm.controls.userName?.valid}} invalid, dirty, pristine, touched, untouched
+{{loginForm.valid}} invalid, dirty, pristine, submitted, touched, untouched
+-->
